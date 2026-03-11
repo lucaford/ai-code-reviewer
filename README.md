@@ -2,6 +2,11 @@
 
 Un agente automatizado de code review impulsado por IA que analiza Pull Requests en GitHub y proporciona feedback inteligente sobre bugs, seguridad y mejores prácticas.
 
+> **⚡ Instalación en 1 comando**: Compatible con cualquier lenguaje (Java, Python, Node.js, Go, etc.)
+> ```bash
+> curl -fsSL https://raw.githubusercontent.com/lucaford/ai-code-reviewer/main/remote-install.sh | bash
+> ```
+
 ## ✨ Características
 
 - 🔍 **Análisis Automático**: Se ejecuta automáticamente en cada Pull Request
@@ -11,28 +16,70 @@ Un agente automatizado de code review impulsado por IA que analiza Pull Requests
 - 📊 **Resumen Ejecutivo**: Genera un resumen del análisis con severidades
 - ⚡ **Rápido y Eficiente**: Analiza múltiples archivos en paralelo
 
-## 🚀 Configuración
+## 🚀 Instalación Rápida
 
-### Paso 1: Clonar o copiar el repositorio
+### Método 1: Instalación Remota con Un Comando ⚡
+
+Instala el AI Code Reviewer en cualquier repositorio directamente desde GitHub:
+
+```bash
+# Desde el root de tu proyecto
+cd /path/to/your/project
+curl -fsSL https://raw.githubusercontent.com/lucaford/ai-code-reviewer/main/remote-install.sh | bash
+```
+
+O con wget:
+```bash
+cd /path/to/your/project
+wget -qO- https://raw.githubusercontent.com/lucaford/ai-code-reviewer/main/remote-install.sh | bash
+```
+
+**Compatible con cualquier lenguaje**: Java, Python, Node.js, Go, Ruby, PHP, C#, Rust, etc.
+
+El script automáticamente:
+- ✅ Descarga el repositorio
+- ✅ Valida requisitos (Git, Node.js)
+- ✅ Copia archivos necesarios
+- ✅ Instala dependencias
+- ✅ Compila TypeScript
+- ✅ Configura el workflow
+
+**📖 Documentación completa**: Ver [INSTALL.md](./INSTALL.md)
+
+### Método 2: Script Local
+
+Si ya clonaste el repositorio:
+
+```bash
+# Desde el root de tu proyecto
+cd /path/to/your/project
+bash /path/to/ai-code-reviewer/install-ai-reviewer.sh
+```
+
+### Método 3: Instalación Manual
+
+Si prefieres hacerlo manualmente:
+
+#### Paso 1: Clonar o copiar el repositorio
 
 ```bash
 git clone <tu-repo>
 cd agent-code-review
 ```
 
-### Paso 2: Instalar dependencias
+#### Paso 2: Instalar dependencias
 
 ```bash
 npm install
 ```
 
-### Paso 3: Compilar TypeScript
+#### Paso 3: Compilar TypeScript
 
 ```bash
 npm run build
 ```
 
-### Paso 4: Configurar Secrets en GitHub
+#### Paso 4: Configurar Secrets en GitHub
 
 Ve a tu repositorio en GitHub:
 1. Settings → Secrets and variables → Actions
@@ -42,7 +89,7 @@ Ve a tu repositorio en GitHub:
 
 **Nota**: `GITHUB_TOKEN` es provisto automáticamente por GitHub Actions.
 
-### Paso 5: Obtener API Key
+#### Paso 5: Obtener API Key
 
 #### Opción A: Kimi K2.5 (Por defecto - Recomendado)
 
@@ -64,7 +111,7 @@ Ve a tu repositorio en GitHub:
 3. Ve a "API Keys" y crea una nueva key
 4. Copia la key y agrégala como secret `ANTHROPIC_API_KEY` en GitHub
 
-### Paso 6: Cambiar el proveedor de IA (Opcional)
+#### Paso 6: Cambiar el proveedor de IA (Opcional)
 
 Por defecto se usa **Kimi**. Para cambiar a Claude:
 
@@ -76,7 +123,7 @@ O edita `.github/workflows/code-review.yml` y cambia:
 AI_PROVIDER: ${{ vars.AI_PROVIDER || 'kimi' }}
 ```
 
-### Paso 7: Activar el workflow
+#### Paso 7: Activar el workflow
 
 El workflow ya está configurado en `.github/workflows/code-review.yml` y se activará automáticamente cuando:
 - Se abre un nuevo Pull Request
