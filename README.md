@@ -46,7 +46,7 @@ Ve a tu repositorio en GitHub:
 
 #### Opción A: Kimi K2.5 (Por defecto - Recomendado)
 
-1. Ve a [platform.moonshot.cn](https://platform.moonshot.cn/)
+1. Ve a [platform.moonshot.ai](https://platform.moonshot.ai/)
 2. Crea una cuenta o inicia sesión
 3. Ve a "API Keys" y crea una nueva key
 4. Copia la key y agrégala como secret `KIMI_API_KEY` en GitHub
@@ -280,7 +280,7 @@ Las contribuciones son bienvenidas. Por favor abre un issue o PR.
 
 ## 📚 Recursos
 
-- [Documentación de Kimi (Moonshot AI)](https://platform.moonshot.cn/docs)
+- [Documentación de Kimi (Moonshot AI)](https://platform.moonshot.ai/docs)
 - [Documentación de Anthropic Claude](https://docs.anthropic.com/)
 - [GitHub Actions Docs](https://docs.github.com/en/actions)
 - [Octokit REST API](https://octokit.github.io/rest.js/)
