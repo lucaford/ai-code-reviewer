@@ -6,11 +6,11 @@ export class KimiAnalyzer {
   private client: OpenAI;
   private model: string;
 
-  constructor(apiKey: string, model: string = 'moonshot-v1-128k') {
+  constructor(apiKey: string, model: string = 'kimi-k2.5') {
     // Kimi usa una API compatible con OpenAI
     this.client = new OpenAI({
       apiKey,
-      baseURL: 'https://api.moonshot.cn/v1',
+      baseURL: 'https://api.moonshot.ai/v1',
     });
     this.model = model;
   }
@@ -27,7 +27,7 @@ export class KimiAnalyzer {
             content: prompt,
           },
         ],
-        temperature: 0.3,
+        temperature: 1,
         max_tokens: 4096,
       });
 

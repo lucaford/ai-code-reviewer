@@ -58,7 +58,7 @@ Se ha agregado soporte completo para **Kimi K2.5** (Moonshot AI) además de Clau
 ### Por defecto (Kimi K2.5)
 
 1. **Obtén tu API key de Kimi:**
-   - Ve a https://platform.moonshot.cn/
+   - Ve a https://platform.moonshot.ai/
    - Crea una cuenta
    - Genera una API key
 
@@ -159,7 +159,7 @@ AI_PROVIDER=claude ANTHROPIC_API_KEY=your-key npm start
 
 ## 📚 Recursos
 
-- **Kimi (Moonshot AI)**: https://platform.moonshot.cn/docs
+- **Kimi (Moonshot AI)**: https://platform.moonshot.ai/docs
 - **Anthropic Claude**: https://docs.anthropic.com/
 - **OpenAI SDK**: https://github.com/openai/openai-node
 

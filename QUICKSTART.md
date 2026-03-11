@@ -146,7 +146,7 @@ constructor(apiKey: string, model: string = 'claude-3-opus-20240229')
 
 **Error de API key:**
 - Confirma que el secret correspondiente está configurado (`KIMI_API_KEY` o `ANTHROPIC_API_KEY`)
-- Verifica que la key es válida en platform.moonshot.cn o console.anthropic.com
+- Verifica que la key es válida en platform.moonshot.ai o console.anthropic.com
 - Asegúrate que el proveedor configurado coincide con la key que proporcionaste
 
 **Sin comentarios en el PR:**
