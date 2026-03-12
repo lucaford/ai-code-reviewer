@@ -4,6 +4,7 @@ export interface ReviewComment {
   severity: 'critical' | 'warning' | 'suggestion';
   message: string;
   suggestion?: string;
+  body?: string; // Formato markdown completo del comentario
 }
 
 export interface FileChange {

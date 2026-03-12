@@ -16,6 +16,8 @@ export interface ReviewConfig {
   focusAreas: ReviewRule[];
   customInstructions?: string;
   strictMode?: boolean;
+  maxCommentsPerReview?: number;
+  commentLanguage?: 'es' | 'en';
 }
 
 /**
@@ -23,6 +25,8 @@ export interface ReviewConfig {
  */
 export const DEFAULT_REVIEW_CONFIG: ReviewConfig = {
   strictMode: false,
+  maxCommentsPerReview: 15,
+  commentLanguage: 'es',
   focusAreas: [
     {
       category: 'BUGS Y ERRORES POTENCIALES',

@@ -4,6 +4,8 @@ import { createAnalyzer, AIProvider } from './analyzer/index.js';
 import { PRFetcher } from './github/pr-fetcher.js';
 import { CommentPoster } from './github/comment-poster.js';
 import { ReviewComment, PRContext } from './types/index.js';
+import { prioritizeComments } from './utils/comment-formatter.js';
+import { loadReviewConfig } from './config/rules.config.js';
 
 async function main() {
   try {
@@ -89,17 +91,32 @@ async function main() {
       }
     }
 
+    // Aplicar límite de comentarios y priorización
+    const config = loadReviewConfig();
+    const maxComments = config.maxCommentsPerReview || 15;
+    const { filtered: prioritizedComments, totalCount, omittedCount } = prioritizeComments(
+      allComments,
+      maxComments
+    );
+
+    if (omittedCount > 0) {
+      console.log(
+        `\n⚠️  Se encontraron ${totalCount} problemas, mostrando los ${maxComments} más críticos\n`
+      );
+    }
+
     // Generar resumen
-    const summary = await analyzer.generateSummary(allComments);
+    const summary = await analyzer.generateSummary(prioritizedComments, totalCount, omittedCount);
     console.log(`\n${summary}\n`);
 
     // Publicar comentarios en el PR
-    if (allComments.length > 0 || fileChanges.length > 0) {
-      await commentPoster.postReviewComments(prContext, allComments, summary);
+    if (prioritizedComments.length > 0 || fileChanges.length > 0) {
+      await commentPoster.postReviewComments(prContext, prioritizedComments, summary);
     }
 
     // Establecer outputs
-    core.setOutput('comments_count', allComments.length.toString());
+    core.setOutput('comments_count', prioritizedComments.length.toString());
+    core.setOutput('total_issues', totalCount.toString());
     core.setOutput('files_reviewed', fileChanges.length.toString());
 
     console.log('\n✨ Review completado exitosamente');
