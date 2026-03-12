@@ -4,7 +4,7 @@ Un agente automatizado de code review impulsado por IA que analiza Pull Requests
 
 > **⚡ Instalación en 1 comando**: Compatible con cualquier lenguaje (Java, Python, Node.js, Go, etc.)
 > ```bash
-> curl -fsSL https://raw.githubusercontent.com/lucaford/ai-code-reviewer/main/remote-install.sh | bash
+> npx @lucaford/ai-code-reviewer install
 > ```
 
 ## ✨ Características
@@ -19,9 +19,39 @@ Un agente automatizado de code review impulsado por IA que analiza Pull Requests
 
 ## 🚀 Instalación Rápida
 
-### Método 1: Instalación Remota con Un Comando ⚡
+### Método 1: NPM Package (Recomendado) ⚡
 
-Instala el AI Code Reviewer en cualquier repositorio directamente desde GitHub:
+La forma más fácil y mantenible de instalar y actualizar:
+
+```bash
+# Instalar en tu proyecto
+cd /path/to/your/project
+npx @lucaford/ai-code-reviewer install
+```
+
+El CLI te guiará a través del proceso de instalación. Automáticamente:
+- ✅ Valida requisitos (Git, Node.js)
+- ✅ Copia archivos necesarios
+- ✅ Instala dependencias
+- ✅ Compila TypeScript
+- ✅ Configura el workflow de GitHub Actions
+
+**Para actualizar en el futuro**:
+```bash
+npx @lucaford/ai-code-reviewer update
+```
+
+**Comandos disponibles**:
+```bash
+npx @lucaford/ai-code-reviewer install   # Instalar
+npx @lucaford/ai-code-reviewer update    # Actualizar
+npx @lucaford/ai-code-reviewer version   # Ver versión
+npx @lucaford/ai-code-reviewer help      # Ayuda
+```
+
+### Método 2: Instalación Remota con Script
+
+Si prefieres un script bash:
 
 ```bash
 # Desde el root de tu proyecto
@@ -37,17 +67,9 @@ wget -qO- https://raw.githubusercontent.com/lucaford/ai-code-reviewer/main/remot
 
 **Compatible con cualquier lenguaje**: Java, Python, Node.js, Go, Ruby, PHP, C#, Rust, etc.
 
-El script automáticamente:
-- ✅ Descarga el repositorio
-- ✅ Valida requisitos (Git, Node.js)
-- ✅ Copia archivos necesarios
-- ✅ Instala dependencias
-- ✅ Compila TypeScript
-- ✅ Configura el workflow
-
 **📖 Documentación completa**: Ver [INSTALL.md](./INSTALL.md)
 
-### Método 2: Script Local
+### Método 3: Script Local
 
 Si ya clonaste el repositorio:
 
@@ -57,7 +79,7 @@ cd /path/to/your/project
 bash /path/to/ai-code-reviewer/install-ai-reviewer.sh
 ```
 
-### Método 3: Instalación Manual
+### Método 4: Instalación Manual
 
 Si prefieres hacerlo manualmente:
 
@@ -162,6 +184,55 @@ Personaliza las reglas de revisión según las necesidades de tu equipo. Crea un
 ```
 
 **📖 Documentación completa**: Ver [RULES.md](./RULES.md) para guía detallada y ejemplos por tecnología (React, Django, Express, etc.)
+
+## 🔄 Actualizar a Nueva Versión
+
+Si instalaste usando el método NPM (recomendado), actualizar es muy simple:
+
+```bash
+cd /path/to/your/project
+npx @lucaford/ai-code-reviewer update
+```
+
+El comando `update`:
+- ✅ Detecta automáticamente la instalación existente (subdirectorio o root)
+- ✅ Hace backup de `node_modules` por seguridad
+- ✅ Actualiza el código fuente (`src/`)
+- ✅ Actualiza configuración (`package.json`, `tsconfig.json`)
+- ✅ Actualiza el workflow de GitHub Actions
+- ✅ Reinstala dependencias limpias
+- ✅ Recompila TypeScript
+- ✅ Muestra el cambio de versión (v1.0.0 → v1.1.0)
+
+Después de actualizar, solo necesitas:
+```bash
+git add .
+git commit -m "Update AI Code Reviewer to v1.1.0"
+git push
+```
+
+### Verificar versión instalada
+
+```bash
+# Ver versión del paquete NPM
+npx @lucaford/ai-code-reviewer version
+
+# Ver versión en tu proyecto (si está en subdirectorio)
+cat .ai-reviewer/package.json | grep version
+
+# Ver versión en tu proyecto (si está en root)
+cat package.json | grep version
+```
+
+### Actualización manual
+
+Si instalaste con script bash, puedes:
+1. Volver a ejecutar el script de instalación (sobrescribirá archivos)
+2. O migrar al método NPM:
+   ```bash
+   npx @lucaford/ai-code-reviewer install
+   # Selecciona sobrescribir archivos existentes
+   ```
 
 ## 📦 Estructura del Proyecto
 

@@ -1,0 +1,34 @@
+# NPM Package specific
+*.log
+*.tgz
+node_modules/
+dist/
+
+# Development
+.env
+.env.local
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Build artifacts
+*.js.map
+
+# Don't publish these
+.github/
+!.github/workflows/code-review.yml
+test/
+tests/
+*.test.ts
+*.spec.ts
+install-ai-reviewer.sh
+remote-install.sh
+INSTALL.md
