@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Code Reviewer Configuration",
+  "description": "Configuración personalizada para el AI Code Review Agent",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "description": "Lenguaje principal del proyecto (Java, TypeScript, Python, etc.)",
+      "examples": ["Java", "TypeScript", "Python", "Go", "Ruby"]
+    },
+    "framework": {
+      "type": "string",
+      "description": "Framework utilizado (Spring Boot, React, Django, etc.)",
+      "examples": ["Spring Boot", "React", "Django", "Express", "Rails"]
+    },
+    "strictMode": {
+      "type": "boolean",
+      "description": "Modo estricto: reporta incluso problemas menores",
+      "default": false
+    },
+    "focusAreas": {
+      "type": "array",
+      "description": "Áreas específicas en las que enfocarse durante la revisión",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Nombre de la categoría de reglas"
+          },
+          "rules": {
+            "type": "array",
+            "description": "Lista de reglas específicas para esta categoría",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["category", "rules"]
+      }
+    },
+    "customInstructions": {
+      "type": "string",
+      "description": "Instrucciones adicionales personalizadas para el reviewer"
+    }
+  }
+}
