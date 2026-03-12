@@ -2,6 +2,8 @@
   "language": "Java",
   "framework": "Spring Boot",
   "strictMode": true,
+  "maxCommentsPerReview": 15,
+  "commentLanguage": "es",
   "focusAreas": [
     {
       "category": "PRINCIPIOS SOLID",

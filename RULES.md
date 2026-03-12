@@ -48,8 +48,33 @@ git push
 | `language` | string | Lenguaje principal (Java, TypeScript, Python, etc.) | ✅ |
 | `framework` | string | Framework usado (Spring Boot, React, Django, etc.) | ✅ |
 | `strictMode` | boolean | Activa modo estricto (más riguroso) | ✅ (default: false) |
+| `maxCommentsPerReview` | number | Máximo de comentarios por review (1-50) | ✅ (default: 15) |
+| `commentLanguage` | string | Idioma de los comentarios ("es" o "en") | ✅ (default: "es") |
 | `focusAreas` | array | Categorías de reglas personalizadas | ✅ |
 | `customInstructions` | string | Instrucciones adicionales para el reviewer | ✅ |
+
+### ℹ️ Sobre maxCommentsPerReview
+
+El reviewer puede encontrar muchos problemas en un PR grande. Para evitar abrumar al desarrollador, el sistema:
+
+- **Prioriza automáticamente**: CRITICAL > WARNING > SUGGESTION
+- **Limita los comentarios**: Por defecto muestra máximo 15 comentarios
+- **Informa sobre omisiones**: Si hay más problemas, el summary indica: _"Se encontraron 25 problema(s), mostrando los 15 más críticos"_
+
+Puedes ajustar este límite en `.reviewrc.json`:
+
+```json
+{
+  "maxCommentsPerReview": 20,  // Mostrar hasta 20 comentarios
+  ...
+}
+```
+
+**Valores recomendados:**
+- **5-10**: Para PRs muy frecuentes, feedback rápido
+- **15** (default): Balance ideal para la mayoría de casos
+- **20-30**: Para reviews muy detallados
+- **50**: Máximo permitido
 
 ### Estructura de focusAreas
 
@@ -66,6 +91,43 @@ git push
     }
   ]
 }
+```
+
+## 🎨 Formato de Comentarios
+
+Los comentarios del reviewer se formatean automáticamente con iconos y colores según la severidad:
+
+### 🔴 CRITICAL
+Problemas críticos que **deben** ser resueltos antes de mergear:
+```
+🔴 **CRITICAL**
+
+Vulnerabilidad de SQL Injection detectada. La consulta usa concatenación de strings.
+
+💡 Sugerencia:
+Usar PreparedStatement o queries parametrizadas con JPA.
+```
+
+### 🟡 WARNING
+Advertencias importantes que **deberían** ser revisadas:
+```
+🟡 **WARNING**
+
+Violación del principio Single Responsibility. Esta clase maneja tanto lógica de negocio como acceso a datos.
+
+💡 Sugerencia:
+Separar en dos clases: UserService (lógica) y UserRepository (datos).
+```
+
+### 🟢 SUGGESTION
+Sugerencias para mejorar el código:
+```
+🟢 **SUGGESTION**
+
+El nombre de variable 'x' no es descriptivo.
+
+💡 Sugerencia:
+Renombrar a 'userCount' o 'totalUsers' para mayor claridad.
 ```
 
 ## 🔧 Ejemplos por Tecnología

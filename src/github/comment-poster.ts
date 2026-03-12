@@ -23,7 +23,7 @@ export class CommentPoster {
       const reviewComments = comments.map(comment => ({
         path: comment.path,
         line: comment.line,
-        body: this.formatComment(comment),
+        body: comment.body || this.formatComment(comment), // Usar body formateado si existe
       }));
 
       // Determinar el evento de la review
@@ -92,6 +92,11 @@ export class CommentPoster {
   }
 
   private formatComment(comment: ReviewComment): string {
+    // Si ya tiene body formateado, usarlo
+    if (comment.body) {
+      return comment.body;
+    }
+    
     const icon = this.getSeverityIcon(comment.severity);
     const severityLabel = this.getSeverityLabel(comment.severity);
     
@@ -106,18 +111,18 @@ export class CommentPoster {
 
   private getSeverityIcon(severity: string): string {
     switch (severity) {
-      case 'critical': return '🚨';
-      case 'warning': return '⚠️';
-      case 'suggestion': return '💡';
+      case 'critical': return '🔴';
+      case 'warning': return '🟡';
+      case 'suggestion': return '🟢';
       default: return 'ℹ️';
     }
   }
 
   private getSeverityLabel(severity: string): string {
     switch (severity) {
-      case 'critical': return 'Crítico';
-      case 'warning': return 'Advertencia';
-      case 'suggestion': return 'Sugerencia';
+      case 'critical': return 'CRITICAL';
+      case 'warning': return 'WARNING';
+      case 'suggestion': return 'SUGGESTION';
       default: return 'Info';
     }
   }

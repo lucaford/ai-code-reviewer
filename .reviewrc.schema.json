@@ -19,6 +19,19 @@
       "description": "Modo estricto: reporta incluso problemas menores",
       "default": false
     },
+    "maxCommentsPerReview": {
+      "type": "number",
+      "description": "Número máximo de comentarios a mostrar por review (priorizando critical > warning > suggestion)",
+      "default": 15,
+      "minimum": 1,
+      "maximum": 50
+    },
+    "commentLanguage": {
+      "type": "string",
+      "description": "Idioma de los comentarios",
+      "enum": ["es", "en"],
+      "default": "es"
+    },
     "focusAreas": {
       "type": "array",
       "description": "Áreas específicas en las que enfocarse durante la revisión",
