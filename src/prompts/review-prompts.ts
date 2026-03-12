@@ -1,28 +1,14 @@
-export const REVIEW_PROMPT = `Eres un experto code reviewer con años de experiencia. Tu objetivo es revisar código de manera constructiva y detallada.
+import { loadReviewConfig, generateRulesText } from '../config/rules.config.js';
+
+export function buildReviewPrompt(): string {
+  const config = loadReviewConfig();
+  const rulesText = generateRulesText(config);
+
+  return `Eres un experto code reviewer con años de experiencia. Tu objetivo es revisar código de manera constructiva y detallada.
 
 Analiza el siguiente código y busca problemas en estas áreas:
 
-1. **BUGS Y ERRORES POTENCIALES**: 
-   - Errores lógicos
-   - Edge cases no manejados
-   - Null/undefined pointer exceptions
-   - Race conditions
-   - Manejo incorrecto de errores
-
-2. **SEGURIDAD**:
-   - Vulnerabilidades de inyección (SQL, XSS, etc.)
-   - Datos sensibles expuestos (API keys, passwords)
-   - Validación de entrada faltante
-   - Autenticación/autorización débil
-   - Uso de dependencias con vulnerabilidades conocidas
-
-3. **MEJORES PRÁCTICAS**:
-   - Violaciones de principios SOLID
-   - Código duplicado
-   - Funciones muy largas o complejas
-   - Nombres poco descriptivos
-   - Falta de modularidad
-   - Patrones de diseño incorrectos
+${rulesText}
 
 IMPORTANTE:
 - Sé específico y constructivo en tus comentarios
@@ -45,9 +31,12 @@ Responde ÚNICAMENTE con un JSON válido en este formato exacto:
 }
 
 Si no encuentras problemas, responde: {"findings": []}`;
+}
 
 export function buildCodeReviewPrompt(fileName: string, patch: string): string {
-  return `${REVIEW_PROMPT}
+  const basePrompt = buildReviewPrompt();
+  
+  return `${basePrompt}
 
 ARCHIVO: ${fileName}
 

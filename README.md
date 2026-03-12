@@ -15,6 +15,7 @@ Un agente automatizado de code review impulsado por IA que analiza Pull Requests
 - 💬 **Comentarios Inline**: Publica comentarios directamente en las líneas problemáticas
 - 📊 **Resumen Ejecutivo**: Genera un resumen del análisis con severidades
 - ⚡ **Rápido y Eficiente**: Analiza múltiples archivos en paralelo
+- 🎨 **Reglas Personalizables**: Configura principios SOLID, estándares del equipo y reglas específicas del proyecto
 
 ## 🚀 Instalación Rápida
 
@@ -129,6 +130,38 @@ El workflow ya está configurado en `.github/workflows/code-review.yml` y se act
 - Se abre un nuevo Pull Request
 - Se hace push a un PR existente
 - Se reabre un PR cerrado
+
+## 🎨 Configurar Reglas Personalizadas (Opcional)
+
+Personaliza las reglas de revisión según las necesidades de tu equipo. Crea un archivo `.reviewrc.json` en la raíz de tu proyecto:
+
+```json
+{
+  "language": "Java",
+  "framework": "Spring Boot",
+  "strictMode": true,
+  "focusAreas": [
+    {
+      "category": "PRINCIPIOS SOLID",
+      "rules": [
+        "Single Responsibility: Cada clase debe tener una única responsabilidad",
+        "Dependency Inversion: Depender de abstracciones, no de implementaciones"
+      ]
+    },
+    {
+      "category": "SPRING BOOT BEST PRACTICES",
+      "rules": [
+        "Inyección de dependencias mediante constructor",
+        "Uso apropiado de @Transactional",
+        "DTOs separados de entidades JPA"
+      ]
+    }
+  ],
+  "customInstructions": "Priorizar arquitectura limpia y código testeable"
+}
+```
+
+**📖 Documentación completa**: Ver [RULES.md](./RULES.md) para guía detallada y ejemplos por tecnología (React, Django, Express, etc.)
 
 ## 📦 Estructura del Proyecto
 

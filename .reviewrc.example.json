@@ -1,0 +1,37 @@
+{
+  "language": "Java",
+  "framework": "Spring Boot",
+  "strictMode": true,
+  "focusAreas": [
+    {
+      "category": "PRINCIPIOS SOLID",
+      "rules": [
+        "Single Responsibility: Cada clase debe tener una única responsabilidad",
+        "Open/Closed: Abierto para extensión, cerrado para modificación",
+        "Liskov Substitution: Las subclases deben ser sustituibles por sus clases base",
+        "Interface Segregation: Interfaces pequeñas y específicas",
+        "Dependency Inversion: Depender de abstracciones, no de implementaciones"
+      ]
+    },
+    {
+      "category": "SPRING BOOT BEST PRACTICES",
+      "rules": [
+        "Inyección de dependencias mediante constructor",
+        "Uso apropiado de @Transactional",
+        "DTOs separados de entidades JPA",
+        "Validación con @Valid y constraint annotations",
+        "Manejo global de excepciones con @ControllerAdvice"
+      ]
+    },
+    {
+      "category": "SEGURIDAD",
+      "rules": [
+        "Validación de entrada en todos los endpoints",
+        "Uso de prepared statements para prevenir SQL injection",
+        "Autenticación y autorización en endpoints sensibles",
+        "No exponer información sensible en logs o responses"
+      ]
+    }
+  ],
+  "customInstructions": "Este es un proyecto enterprise de Spring Boot. Presta especial atención a la arquitectura en capas (Controller → Service → Repository) y al uso correcto de transacciones de base de datos."
+}
