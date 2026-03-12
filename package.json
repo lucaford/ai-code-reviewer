@@ -1,24 +1,57 @@
 {
-  "name": "agent-code-review",
+  "name": "@lucaford/ai-code-reviewer",
   "version": "1.0.0",
   "type": "module",
+  "description": "AI-powered code review agent for GitHub Pull Requests using Kimi K2.5 or Claude 3.5 Sonnet",
   "main": "dist/index.js",
+  "bin": {
+    "ai-code-reviewer": "./cli/cli.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "cli",
+    ".github/workflows/code-review.yml",
+    "tsconfig.json",
+    ".reviewrc.example.json",
+    ".reviewrc.schema.json",
+    "README.md",
+    "QUICKSTART.md",
+    "RULES.md",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "github",
     "code-review",
     "ai",
     "claude",
-    "automation"
+    "kimi",
+    "automation",
+    "pull-request",
+    "github-actions",
+    "code-quality",
+    "static-analysis"
   ],
-  "author": "",
-  "license": "ISC",
-  "description": "AI-powered code review agent for GitHub Pull Requests using Claude",
+  "author": "Lucas Ford <lucaford@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucaford/ai-code-reviewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lucaford/ai-code-reviewer/issues"
+  },
+  "homepage": "https://github.com/lucaford/ai-code-reviewer#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@actions/core": "^3.0.0",
     "@actions/github": "^9.0.0",
